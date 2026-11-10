@@ -1,4 +1,7 @@
 package com.studentmanagement;
+import org.hibernate.Session;
+import org.hibernate.SessionFactory;
+import org.hibernate.cfg.Configuration;
 
 
 
@@ -29,53 +32,62 @@ public class Main {
         studentManager.addStudent(student9);
         studentManager.addStudent(student10);
 
-        System.out.printf("%-10s %-20s %-10s %-20s%n",
-                "Student ID", "Name", "Age", "Major");
+        try (Session session =
+                HibernateUtil.getSessionFactory().openSession()) {
 
-        System.out.println("--------------------------------------------------------------");
+            System.out.println("PostgreSQL connected successfully!");
 
-        for (Student s : studentManager.getStudents()) {
-        System.out.printf("%-10s %-20s %-10d %-20s%n",
-            s.getStudentId(),
-            s.getName(),
-            s.getAge(),
-            s.getMajor());
+        } catch (Exception e) {
+            e.printStackTrace();
         }
 
-        // Update a student's information
-        Student updatedStudent = new Student("Kofi Doe", 21, "S12345", "Software Engineering"); 
-        studentManager.updateStudent(student1, updatedStudent);
+        // System.out.printf("%-10s %-20s %-10s %-20s%n",
+        //         "Student ID", "Name", "Age", "Major");
+
+        // System.out.println("--------------------------------------------------------------");
+
+        // for (Student s : studentManager.getStudents()) {
+        // System.out.printf("%-10s %-20s %-10d %-20s%n",
+        //     s.getStudentId(),
+        //     s.getName(),
+        //     s.getAge(),
+        //     s.getMajor());
+        // }
+
+        // // Update a student's information
+        // Student updatedStudent = new Student("Kofi Doe", 21, "S12345", "Software Engineering"); 
+        // studentManager.updateStudent(student1, updatedStudent);
         
-        System.out.println("\nAfter updating student information:\n");
-          System.out.printf("%-10s %-20s %-10s %-20s%n",
-                "Student ID", "Name", "Age", "Major");
+        // System.out.println("\nAfter updating student information:\n");
+        //   System.out.printf("%-10s %-20s %-10s %-20s%n",
+        //         "Student ID", "Name", "Age", "Major");
 
-        System.out.println("--------------------------------------------------------------");
+        // System.out.println("--------------------------------------------------------------");
 
-        for (Student s : studentManager.getStudents()) {
-        System.out.printf("%-10s %-20s %-10d %-20s%n",
-            s.getStudentId(),
-            s.getName(),
-            s.getAge(),
-            s.getMajor());
-        }
+        // for (Student s : studentManager.getStudents()) {
+        // System.out.printf("%-10s %-20s %-10d %-20s%n",
+        //     s.getStudentId(),
+        //     s.getName(),
+        //     s.getAge(),
+        //     s.getMajor());
+        // }
 
-        // Remove a student
-        studentManager.removeStudent(student3);
+        // // Remove a student
+        // studentManager.removeStudent(student3);
 
-        System.out.println("\nAfter removing a student:\n");
-          System.out.printf("%-10s %-20s %-10s %-20s%n",
-                "Student ID", "Name", "Age", "Major");
+        // System.out.println("\nAfter removing a student:\n");
+        //   System.out.printf("%-10s %-20s %-10s %-20s%n",
+        //         "Student ID", "Name", "Age", "Major");
 
-        System.out.println("--------------------------------------------------------------");
+        // System.out.println("--------------------------------------------------------------");
 
-        for (Student s : studentManager.getStudents()) {
-        System.out.printf("%-10s %-20s %-10d %-20s%n",
-            s.getStudentId(),
-            s.getName(),
-            s.getAge(),
-            s.getMajor());
-        }
+        // for (Student s : studentManager.getStudents()) {
+        // System.out.printf("%-10s %-20s %-10d %-20s%n",
+        //     s.getStudentId(),
+        //     s.getName(),
+        //     s.getAge(),
+        //     s.getMajor());
+        // }
 
     }
 }
